@@ -1,5 +1,5 @@
 <footer>
-  <div class="copyright">Copyright 2022 Beauty Supply</div>
+  <div class="copyright">Copyright &copy; 2022 | Beauty Supply&trade;</div>
 </footer>
 
 <style>
