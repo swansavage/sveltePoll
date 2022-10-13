@@ -11,42 +11,8 @@
     activeItem = event.detail;
   };
 
-  // just some dummy poll data
-  let polls = [
-    {
-      id: 1,
-      question: "Python or Javascript?",
-      answerA: "Python",
-      answerB: "Javascript",
-      votesA: 9,
-      votesB: 15,
-    },
-  ];
-
-  const handleAdd = (event) => {
-    const poll = event.detail;
-    polls = [poll, ...polls];
-    console.log(polls);
+  const handleAdd = () => {
     activeItem = "Current Polls";
-  };
-
-  const handleVote = (event) => {
-    const { id, option } = event.detail;
-
-    let copiedPolls = [...polls];
-
-    // get the poll is being voted on
-    let upvotedPoll = copiedPolls.find((poll) => poll.id == id);
-
-    // update the poll count on the corresponding answer
-    if (option === "a") {
-      upvotedPoll.votesA++;
-    }
-    if (option === "b") {
-      upvotedPoll.votesB++;
-    }
-
-    polls = copiedPolls;
   };
 </script>
 
@@ -54,7 +20,7 @@
 <main>
   <Tabs {activeItem} {items} on:tabChange={tabChange} />
   {#if activeItem === "Current Polls"}
-    <PollList {polls} on:vote={handleVote} />
+    <PollList />
   {:else if activeItem === "Add New Poll"}
     <CreatePollForm on:add={handleAdd} />
   {/if}
