@@ -3,6 +3,8 @@
   import Button from "../Shared/Button.svelte";
   import PollStore from "../stores/PollStore.js";
   import Pollstore from "../stores/PollStore.js";
+  import { fade } from "svelte/transition";
+  import { quintOut } from "svelte/easing";
 
   let dispatch = createEventDispatcher();
   let fields = { question: "", answerA: "", answerB: "" };
@@ -45,7 +47,13 @@
   };
 </script>
 
-<form on:submit|preventDefault={submitHandler}>
+<form
+  on:submit|preventDefault={submitHandler}
+  in:fade={{
+    duration: 800,
+    easing: quintOut,
+  }}
+>
   <div class="form-field">
     <label for="question">Poll Question</label>
     <input type="text" id="question" bind:value={fields.question} />
